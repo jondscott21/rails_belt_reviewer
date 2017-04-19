@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BeltReviewer</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <body>
+  <nav>
+    <div class="nav-wrapper blue">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <%= yield :events_page %>
+        </li>
+        <li>
+          <%= yield :dashboard %>
+        </li>
+      <% if current_user %>
+            <li><a style="font-size: 16px" href="/log_out/<%=current_user.id%>" data-method="delete">Log Out</a></li>
+      <% end %>
+
+      </ul>
+    </div>
+  </nav>
+  <% flash.each do |name, msg| %>
+      <span class="red-text"><%= msg%></span>
+  <% end %>
+
+    <%= yield %>
+  </body>
+</html>

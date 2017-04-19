@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row">
+    <h1>Welcome!</h1>
+
+    <div class="col s5">
+      <fieldset>
+        <legend>Register</legend>
+
+          <form action="/create" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="input-field">
+              <input type="text" name="user[first_name]" id="first_name">
+              <label for="first_name">First Name</label>
+            </div>
+
+            <div class="input-field">
+              <input type="text" name="user[last_name]" id="last_name">
+              <label for="last_name">Last Name</label>
+            </div>
+            <div class="input-field">
+              <input type="text" name="user[email]" id="email">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="text" name="user[location]" id="location">
+              <label for="location">Location</label>
+            </div>
+            <div class="input-field">
+              <select class="browser-default" name="user[state]" id="state">
+                <option disabled selected>Choose State</option>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AR">AR</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="IA">IA</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MS">MS</option>
+                <option value="MO">MO</option>
+                <option value="MT">MT</option>
+                <option value="NE">NE</option>
+                <option value="NV">NV</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NY">NY</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VA">VA</option>
+                <option value="VT">VT</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+              </select>
+            </div>
+            <div class="input-field">
+              <input type="password" name="user[password]" id="password">
+              <label for="password">Password</label>
+            </div>
+
+            <p style="font-size: 12px">*password field must be at least 8 characters</p>
+            <div class="input-field">
+              <input type="password" name="user[password_confirmation]" id="password_confirmation">
+              <label for="password_confirmation">Password Confirmation</label>
+            </div>
+            <input type="submit" value="Register" class="btn blue">
+          </form>
+      </fieldset>
+    </div>
+    <div class="col s5 offset-s1">
+      <fieldset>
+        <legend>Login</legend>
+        <form action="/login" method="post">
+          <% if flash[:log_errors] %>
+              <span class="red-text"><%= flash[:log_errors][0]%></span>
+          <% end%>
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <div class="input-field">
+            <input type="text" name="email" id="log_email">
+            <label for="log_email">Email</label>
+          </div>
+          <div class="input-field">
+            <input type="password" name="password" id="log_password">
+            <label for="log_password">Password</label>
+          </div>
+          <input type="submit" value="Login" class="btn btn blue">
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>
