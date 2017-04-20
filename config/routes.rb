@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   get '/' => 'users#index'
   post '/create' => 'users#create'
-  get '/users/:user_id' => 'users#show'
+  put 'users/:id' => 'users#update'
+  get '/users/:id' => 'users#show'
   post '/login' => 'users#login'
   delete '/log_out/:user_id' => 'users#log_out'
   get '/plan/:id' => 'events#plan'

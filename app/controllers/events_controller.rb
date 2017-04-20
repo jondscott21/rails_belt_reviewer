@@ -11,6 +11,7 @@ class EventsController < ApplicationController
       redirect_back(fallback_location: :back)
     else
       flash[:errors] = event.errors.full_messages
+      redirect_back(fallback_location: :back)
     end
   end
   def show
@@ -43,7 +44,7 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     if event.update(event_params)
-      redirect_back(fallback_location: :back)
+      redirect_to '/events'
     else
       flash[:errors] = event.errors.full_messages
       redirect_back(fallback_location: :back)

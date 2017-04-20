@@ -6,8 +6,9 @@ class User < ApplicationRecord
   has_many :events_planned, through: :plans, source: :event
 
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
+  before_update :skip_password_attribute
   validates :first_name, :last_name, :location, presence: true
-  validates :password, length: {minimum: 8}
+  validates :password, length: {minimum: 8}, on: :create
   validates :state, presence: true, length: {is:2}
   validates :email, presence:  true, uniqueness: {case_sensitive: false}, format: {with: EMAIL_REGEX}
   before_save :downcase_email, :first_name_uppercase, :last_name_uppercase
@@ -21,4 +22,9 @@ def first_name_uppercase
 end
 def last_name_uppercase
   last_name.capitalize!
+end
+def skip_password_attribute
+  if :password.blank? && :password_confirmation.blank?
+    params.except!(:password, :password_confirmation)
+  end
 end
